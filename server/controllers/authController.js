@@ -8,8 +8,11 @@ const generateToken = (id) => {
 
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    // Capture name or username depending on what the frontend inputs send
+    const { name, username, email, password } = req.body;
+    const finalName = name || username || 'Admin';
+
+    if (!email || !password) {
       return res.status(400).json({ message: 'Please fill in all fields' });
     }
 
@@ -22,8 +25,10 @@ exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Save both fields so Mongoose validations always pass cleanly
     const user = await User.create({ 
-      name, 
+      name: finalName,
+      username: finalName,
       email: cleanEmail, 
       password: hashedPassword 
     });
@@ -56,7 +61,7 @@ exports.loginUser = async (req, res) => {
     if (isMatch) {
       res.json({
         _id: user._id,
-        name: user.name,
+        name: user.name || user.username,
         email: user.email,
         token: generateToken(user._id),
       });

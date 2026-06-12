@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  // Accept name or username to ensure frontend and backend can't mismatch
   name: {
     type: String,
-    required: true,
+    required: false,
+    trim: true
+  },
+  username: {
+    type: String,
+    required: false,
     trim: true
   },
   email: {
