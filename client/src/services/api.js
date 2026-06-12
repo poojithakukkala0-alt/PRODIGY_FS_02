@@ -2,9 +2,7 @@ import axios from 'axios';
 
 const API = axios.create({ 
   baseURL: 'https://prodigy-fs-02-p8oj.onrender.com',
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  headers: { 'Content-Type': 'application/json' }
 });
 
 API.interceptors.request.use((req) => {
@@ -15,11 +13,9 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// Auth API Endpoints
 export const login = (formData) => API.post('/api/auth/login', formData);
 export const register = (formData) => API.post('/api/auth/register', formData);
 
-// Employee CRUD API Endpoints
 export const fetchEmployees = () => API.get('/api/employees');
 export const fetchEmployeeById = (id) => API.get(`/api/employees/${id}`);
 export const addEmployee = (data) => API.post('/api/employees', data);
