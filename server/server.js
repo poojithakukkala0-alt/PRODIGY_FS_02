@@ -9,11 +9,13 @@ const app = express();
 
 connectDB();
 
-// Fixed: Allowed specific cross-origin domains to clear CORS blockage
+// Fixed: Explicitly allow your frontend domain to prevent CORS blocks
 app.use(cors({
-  origin: ["https://onrender.com", "http://localhost:5173"],
+  origin: "https://prodigy-fs-02-1-gan7.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
