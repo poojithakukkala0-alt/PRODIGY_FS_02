@@ -17,7 +17,7 @@ API.interceptors.request.use((req) => {
 
 // Auth API Endpoints
 export const login = (formData) => API.post('/api/auth/login', formData);
-export const register = (formData) => API.post('/api/api/auth/register' in backend ? '/api/auth/register' : '/api/auth/register', formData);
+export const register = (formData) => API.post('/api/auth/register', formData);
 
 // Employee CRUD API Endpoints
 export const fetchEmployees = () => API.get('/api/employees');
