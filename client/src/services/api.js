@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ 
-  baseURL: 'https://onrender.com',
+  baseURL: 'https://prodigy-fs-02-p8oj.onrender.com',
   headers: {
     'Content-Type': 'application/json'
   }
