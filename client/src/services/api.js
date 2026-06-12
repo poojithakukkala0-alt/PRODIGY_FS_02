@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ baseURL: 'https://prodigy-fs-02-p8oj.onrender.com' });
 
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
